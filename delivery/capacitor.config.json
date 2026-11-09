@@ -1,0 +1,13 @@
+{
+  "appId": "in.frienzo.delivery",
+  "appName": "Frienzo Rider",
+  "webDir": "www",
+  "server": {
+    "url": "https://frienzo.in/be/delivery/",
+    "cleartext": false,
+    "allowNavigation": ["frienzo.in", "*.cashfree.com", "*.razorpay.com"]
+  },
+  "android": {
+    "allowMixedContent": false
+  }
+}

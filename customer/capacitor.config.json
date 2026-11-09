@@ -1,0 +1,13 @@
+{
+  "appId": "in.frienzo.customer",
+  "appName": "Frienzo",
+  "webDir": "www",
+  "server": {
+    "url": "https://frienzo.in/be/",
+    "cleartext": false,
+    "allowNavigation": ["frienzo.in", "*.cashfree.com", "*.razorpay.com"]
+  },
+  "android": {
+    "allowMixedContent": false
+  }
+}
