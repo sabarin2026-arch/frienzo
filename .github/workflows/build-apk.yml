@@ -36,6 +36,12 @@ jobs:
         if: matrix.app == 'delivery'
         run: bash scripts/patch-manifest.sh ${{ matrix.app }}
 
+      - name: Customer location permission
+        if: matrix.app == 'customer'
+        run: |
+          M=customer/android/app/src/main/AndroidManifest.xml
+          sed -i 's#<application#<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />\n    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />\n    <application#' $M
+
       - name: Generate app icons
         working-directory: ${{ matrix.app }}
         run: |
@@ -44,13 +50,4 @@ jobs:
 
       - name: Sync
         working-directory: ${{ matrix.app }}
-        run: npx cap sync android
-
-      - name: Build debug APK
-        working-directory: ${{ matrix.app }}/android
-        run: ./gradlew assembleDebug
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: frienzo-${{ matrix.app }}-debug-apk
-          path: ${{ matrix.app }}/android/app/build/outputs/apk/debug/*.apk
+        run: npx cap sync
