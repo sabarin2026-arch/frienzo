@@ -50,4 +50,13 @@ jobs:
 
       - name: Sync
         working-directory: ${{ matrix.app }}
-        run: npx cap sync
+        run: npx cap sync android
+
+      - name: Build debug APK
+        working-directory: ${{ matrix.app }}/android
+        run: ./gradlew assembleDebug
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: frienzo-${{ matrix.app }}-debug-apk
+          path: ${{ matrix.app }}/android/app/build/outputs/apk/debug/*.apk
